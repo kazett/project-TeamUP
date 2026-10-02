@@ -1,0 +1,30 @@
+TeamUP License
+Copyright (c) 2026 kazett (https://github.com/kazett). All rights reserved.
+KAZETT DEVELOPMENT RIGHT
+
+Berlaku untuk plugin TeamUP (source code, jar) dan TeamUP-GUI-pack (resource pack).
+
+BOLEH / ALLOWED
+1. Memakai TeamUP di server Minecraft milik sendiri (termasuk server yang
+   memakai donasi/monetisasi).
+2. Mengubah config.yml, teks, dan source code untuk keperluan server sendiri.
+
+TIDAK BOLEH / NOT ALLOWED
+1. Menjual, membagikan ulang, atau mengunggah ulang TeamUP (asli maupun hasil
+   modifikasi) di mana pun tanpa izin tertulis dari kazett.
+2. Mengaku TeamUP sebagai karya sendiri.
+3. Menghapus atau mengubah nama author, link GitHub di plugin.yml, dan banner
+   console. (Teks sambutan di chat player boleh dimatikan lewat
+   welcome.enabled di config.yml.)
+
+TANPA GARANSI / NO WARRANTY
+TeamUP diberikan "apa adanya" tanpa garansi apa pun. Penulis tidak bertanggung
+jawab atas kerusakan, kehilangan data, atau masalah lain akibat pemakaian
+plugin ini.
+
+Permintaan izin, laporan bug, dan saran: https://github.com/kazett
+
+---
+English summary: You may use and modify TeamUP on your own servers. You may not
+redistribute, resell, or re-upload it (original or modified), claim it as your
+own, or remove the author credit. Provided "as is", without warranty.

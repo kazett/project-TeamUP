@@ -1,0 +1,23 @@
+name: TeamUP
+version: 1.1.0
+main: id.teamup.TeamUPPlugin
+api-version: '1.20'
+authors: [kazett]
+website: https://github.com/kazett
+description: Sistem team/fraksi dengan rank, team chat, HUD, dan warn. Build by kazett - https://github.com/kazett
+commands:
+  teamup:
+    description: Buka menu TeamUP
+    aliases: [tu, team]
+    usage: /teamup
+  teamupadmin:
+    description: Buka menu admin TeamUP
+    aliases: [tua]
+    usage: /teamupadmin
+  tc:
+    description: Kirim pesan ke team chat
+    usage: /tc <pesan>
+permissions:
+  teamup.admin:
+    description: Akses menu admin TeamUP
+    default: op

@@ -1,0 +1,77 @@
+max-members: 20
+team-name-max-length: 25   # panjang maksimal nama team/fraksi (2 - 32)
+team-name-allow-spaces: true   # false = nama team tanpa spasi (hanya huruf/angka/_)
+invite-expire-seconds: 60
+friendly-fire: false
+welcome:
+  enabled: true   # teks sambutan di chat saat player join
+nametag:
+  enabled: true
+hud:
+  enabled: true            # false = HUD mati total (ubah lalu /tua reload)
+  gui-width: 750           # lebar layar dalam pixel GUI; atur lewat /tua hud <lebar> [margin]
+  margin: 12                # jarak plat dari tepi kanan layar
+  timezone: "Asia/Jakarta"
+  timezone-label: "WIB"
+
+  # Logo KOTAK besar di paling atas (rata kanan), plat tanggal dan fraksi tepat di bawahnya.
+  # false = tampilan HUD tanpa logo (plat saja di pojok kanan atas).
+  # Ganti gambar logo: di resource pack, timpa file
+  #   assets/teamup/textures/gui/logo.png   (harus persegi, resolusi bebas, contoh 128x128)
+  # size = sisi logo di layar (pixel GUI), pilihan: 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96
+  # (angka lain dibulatkan ke yang terdekat). Tidak perlu edit file pack untuk ganti ukuran.
+  # offset-x = geser logo ke kanan (angka positif) atau ke kiri (negatif) kalau terlihat
+  # tidak rata, misalnya gambar logo punya bagian transparan di sisi kanan.
+  logo:
+    enabled: true
+    size: 72
+    offset-x: 0
+
+  # Warna background plat tanggal (hex). Ikon kalender tidak ikut berubah warna.
+  # icon: calendar atau none
+  date:
+    color: "#3A86FF"
+    icon: calendar
+
+  # Plat fraksi. color: team = ikut warna team, atau hex (contoh "#55FF55").
+  # icon: shield, sword, atau none (file ikon: assets/teamup/textures/gui/icon_*.png)
+  faction:
+    color: team
+    no-team-color: "#808080"   # warna plat kalau belum punya team ("no fraksi")
+    icon: shield
+
+warn-ban-days: [1, 7, 14]
+recreate:
+  enabled: true            # false = tidak ada batas anggota lama saat bikin team baru
+  max-same-members: 3
+ranks:
+  LEADER:
+    name: "KETUA"
+    openmenu: true
+    managemembers: true
+    viewonline: true
+    chat: true
+  DEPUTY:
+    name: "WAKIL KETUA"
+    openmenu: true
+    managemembers: false
+    viewonline: true
+    chat: true
+  MEMBER:
+    name: "MEMBER"
+    openmenu: false
+    managemembers: false
+    viewonline: false
+    chat: true
+  SOLDIER:
+    name: "SOLDIER"
+    openmenu: false
+    managemembers: false
+    viewonline: false
+    chat: false
+  HANGEROUND:
+    name: "HANGEROUND"
+    openmenu: false
+    managemembers: false
+    viewonline: false
+    chat: false
