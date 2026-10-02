@@ -29,7 +29,7 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
         }
         if (args.length == 0) {
             if (sender instanceof Player p) new AdminMenu(plugin, p).open();
-            else Msg.send(sender, "&7Pakai: /tua create <team> <player> | delete <team> | list | hud <lebar> [margin] | reload");
+            else Msg.send(sender, "&7Pakai: /tua create <team> <player> | delete <team> | list | hud <lebar> [margin] | hud check | reload");
             return true;
         }
         switch (args[0].toLowerCase()) {
@@ -74,6 +74,10 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
                     Msg.send(sender, "&7Pakai: /tua hud <lebar GUI> [margin kanan]  (contoh: /tua hud 750 12)");
                     return true;
                 }
+                if (args[1].equalsIgnoreCase("check")) {
+                    plugin.hud().sendCheck(sender);
+                    return true;
+                }
                 try {
                     plugin.getConfig().set("hud.gui-width", Integer.parseInt(args[1]));
                     if (args.length > 2) plugin.getConfig().set("hud.margin", Integer.parseInt(args[2]));
@@ -90,7 +94,7 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
                     sender.sendMessage(Msg.c("&8- &b" + t.getName() + " &7ketua &f" + t.nameOf(t.getLeader())
                             + " &7member &f" + t.getMembers().size() + " &7strike &c" + t.getStrikes()));
             }
-            default -> Msg.send(sender, "&7Pakai: /tua create <team> <player> | delete <team> | list | hud <lebar> [margin] | reload");
+            default -> Msg.send(sender, "&7Pakai: /tua create <team> <player> | delete <team> | list | hud <lebar> [margin] | hud check | reload");
         }
         return true;
     }

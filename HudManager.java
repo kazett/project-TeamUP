@@ -18,6 +18,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataType;
@@ -158,6 +159,17 @@ public class HudManager {
             case "sword" -> ICON_SWORD;
             default -> def;
         };
+    }
+
+    /** /tua hud check: kirim baris chat yang memakai font pack. Kotak-kotak = pack belum terpasang / versi lama. */
+    public void sendCheck(CommandSender to) {
+        Component plateDemo = Component.text("" + GL_LEFT + GL_MID + GL_MID + GL_RIGHT)
+                .font(fontFor(0)).color(TextColor.color(0x3A86FF));
+        Component iconDemo = Component.text("  " + ICON_CALENDAR + " " + ICON_SHIELD + " " + ICON_SWORD)
+                .font(fontFor(0)).color(WHITE);
+        to.sendMessage(Msg.c("&7Cek pack: ").append(plateDemo).append(iconDemo));
+        to.sendMessage(Msg.c("&7Kalau tampil kotak-kotak, resource pack TeamUP belum terpasang atau masih versi lama "
+                + "(pakai &fTeamUP-GUI-pack-v3.zip&7)."));
     }
 
     private static Key fontFor(int offset) {

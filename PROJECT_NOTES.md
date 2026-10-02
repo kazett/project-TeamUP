@@ -222,3 +222,8 @@ Kalau mau referensi tampilan, kirim screenshot GUI plugin lain yang disukai (ata
 - Solusi: seluruh HUD (logo + 2 plat) digambar dalam 1 bossbar. Horizontal: total lebar judul dipaksa = 2 x tengah layar (hud.gui-width / 2), jadi judul mulai di x = 0 dan posisi kursor = posisi layar. Vertikal: font pack `teamup:hud_<offset>` menurunkan gambar sebesar offset pixel (ascent negatif); offset = tinggi logo + 3 (tanggal) dan +19 lagi (fraksi).
 - Ukuran logo (`hud.logo.size`): 16, 24, ..., 96 (kelipatan 8), default 72. Pack punya 23 font hud_<offset>.json (otomatis dibuat; kalau menambah ukuran logo, buat font offset baru: S+3 dan S+22).
 - Bossbar lain (naga, dll) sekarang tampil tepat di bawah slot HUD (hanya bergeser 1 baris).
+
+## Update 2 Okt (6)
+
+- Versi plugin 1.2.0, pack diganti nama `TeamUP-GUI-pack-v3.zip` (deskripsi "v3") supaya jar/pack lama tidak tertukar. HUD v3 butuh jar 1.2.0 + pack v3 (font hud_<offset>.json); pack lama + jar baru = kotak-kotak di atas layar.
+- `/tua hud check`: kirim baris chat yang memakai font pack (plat + ikon). Kotak-kotak = pack belum terpasang / lama.
