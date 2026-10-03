@@ -237,3 +237,14 @@ Kalau mau referensi tampilan, kirim screenshot GUI plugin lain yang disukai (ata
 - Log: perubahan dibandingkan dengan isi sebelumnya (`Vault.flush`) dan dicatat atas nama pemain (aksi P/T/S). Pindah slot tidak dicatat. Tersimpan di `plugins/TeamUP/vaults/<id>.log` (append, tulis async), memori + file dibatasi `vault.log.max-entries` (500). Clear log: Ketua/Wakil/admin, log lama diarsipkan (maks 10 arsip) + dicatat siapa yang clear.
 - Simpan: `vaults/<id>.yml` (tulis atomik, async, debounce 1 detik, wajib selesai saat shutdown). Team dibubarkan -> isi + log diarsipkan ke `vaults/archive/`, tidak dihapus.
 - Pack v4: 17 tombol baru (BRANGKAS, HISTORY, VIEW, UPGRADE, LOG, CLEAR, LEVEL 1-5 centang/terbuka). Urutan enum `Btn` harus sama dengan urutan di gui.json (sudah dicek otomatis).
+
+## Update 3 Okt (2): menu tanpa item dekorasi, slot brankas baru (v1.3.1, pack v5)
+
+- Item dekorasi di menu (buku/rak/chest info/kertas) diganti TEKS yang digambar pack: `Menu.label(slot, line, text)` -> `GuiFont.styled(..., labels, ...)`. Teks diletakkan lewat font `teamup:txt_<y>` (assets/teamup/font/txt_*.json, 18 font: y = 19/22/27 + 18*baris). line 0 = satu baris, 1 = baris atas, 2 = baris bawah. Dipakai di ConfirmMenu, TeamMenu, AdminMenu, VaultAdminMenu, VaultUpgradeMenu.
+- Item yang memang fungsional tetap item: isi brankas, VIEW, log (ikon barang), kepala pemain, pilihan warna, daftar team/brankas.
+- Slot per level default 50/100/150/200/300 (`vault.slots-per-level`); batas keras brankas dinaikkan ke 500 slot.
+- Pack v5 harus dipasang bersama jar 1.3.1 (font txt_<y> baru).
+
+## Versi 5.2.9
+
+- Versi plugin 5.2.9, nama jar hasil build: `TeamUP5.2.9.jar` (build.gradle: archiveFileName = "TeamUP${project.version}.jar"). Banner console menampilkan `TeamUP v5.2.9`.

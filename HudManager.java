@@ -169,7 +169,7 @@ public class HudManager {
                 .font(fontFor(0)).color(WHITE);
         to.sendMessage(Msg.c("&7Cek pack: ").append(plateDemo).append(iconDemo));
         to.sendMessage(Msg.c("&7Kalau tampil kotak-kotak, resource pack TeamUP belum terpasang atau masih versi lama "
-                + "(pakai &fTeamUP-GUI-pack-v4.zip&7)."));
+                + "(pakai &fTeamUP-GUI-pack-v5.zip&7)."));
     }
 
     private static Key fontFor(int offset) {

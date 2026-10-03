@@ -65,7 +65,7 @@ public class VaultManager {
             prev = v;
             if (out.size() == 5) break;
         }
-        if (out.isEmpty()) return List.of(20, 40, 60, 80, 100);
+        if (out.isEmpty()) return List.of(50, 100, 150, 200, 300);
         return out;
     }
 

@@ -1,13 +1,10 @@
 package id.teamup.gui;
 
-import id.teamup.Items;
 import id.teamup.Msg;
 import id.teamup.TeamUPPlugin;
 import id.teamup.model.Team;
 import id.teamup.model.TeamPerm;
 import id.teamup.vault.Vault;
-import java.util.List;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 /** Menu utama TeamUP. admin=true berarti dibuka admin sebagai ketua (semua izin). */
@@ -44,10 +41,9 @@ public class TeamMenu extends Menu {
     @Override
     protected void build() {
         int online = plugin.teams().onlineMembers(team).size();
-        set(4, Items.make(Material.BOOK, "&b" + team.getName(),
-                List.of("&7Ketua: &f" + team.nameOf(team.getLeader()),
-                        "&7Member: &f" + team.getMembers().size() + " &7(online " + online + ")",
-                        "&7Strike: &c" + team.getStrikes())));
+        label(0, 1, "&7KETUA &f" + team.nameOf(team.getLeader()));
+        label(0, 2, "&f" + team.getMembers().size() + " &7MEMBER &8| &a" + online + " &7ON &8| &c" + team.getStrikes()
+                + " &7STRIKE");
 
         btn(9, Btn.ANGGOTA, e -> new MembersMenu(plugin, viewer, this, team, admin).open());
 

@@ -1,9 +1,7 @@
 package id.teamup.gui;
 
-import id.teamup.Items;
 import id.teamup.TeamUPPlugin;
 import id.teamup.vault.Vault;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 /** Admin: HISTORY / VIEW / UPGRADE untuk satu brankas fraksi. */
@@ -32,11 +30,8 @@ public class VaultAdminMenu extends Menu {
 
     @Override
     protected void build() {
-        set(4, Items.make(Material.CHEST, "&e" + vault.teamName(),
-                "&7Level: &f" + vault.level() + "&7/" + vault.levelCount(),
-                "&7Kapasitas: &f" + vault.capacity() + " slot",
-                "&7Terisi: &f" + vault.usedSlots() + " slot",
-                "&7Log: &f" + vault.logsNewestFirst().size() + " catatan"));
+        label(0, 1, "&eLEVEL " + vault.level() + "&7/" + vault.levelCount() + "  &7LOG &f" + vault.logsNewestFirst().size());
+        label(0, 2, "&f" + vault.usedSlots() + "&7/" + vault.capacity() + " SLOT TERISI");
         btn(9, Btn.HISTORY, e -> new VaultLogMenu(plugin, viewer, this, vault, true).open());
         btn(14, Btn.VIEW, e -> new VaultViewMenu(plugin, viewer, this, vault).open());
         btn(18, Btn.UPGRADE, e -> new VaultUpgradeMenu(plugin, viewer, this, vault).open());

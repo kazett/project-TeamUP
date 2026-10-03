@@ -1,10 +1,8 @@
 package id.teamup.gui;
 
-import id.teamup.Items;
 import id.teamup.Msg;
 import id.teamup.TeamUPPlugin;
 import id.teamup.vault.Vault;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 /** Admin: pilih level brankas. Level yang sudah terbuka bertanda centang dan tidak bisa diturunkan. */
@@ -39,10 +37,8 @@ public class VaultUpgradeMenu extends Menu {
             if (parent != null) parent.open();
             else viewer.closeInventory();
         });
-        set(4, Items.make(Material.CHEST, "&e" + vault.teamName(),
-                "&7Level sekarang: &f" + vault.level() + "&7/" + vault.levelCount(),
-                "&7Kapasitas: &f" + vault.capacity() + " slot",
-                "&8Upgrade tidak bisa di-downgrade"));
+        label(4, 1, "&eLEVEL " + vault.level() + "&7/" + vault.levelCount());
+        label(4, 2, "&7" + vault.capacity() + " SLOT");
         int count = Math.min(5, vault.levelCount());
         for (int lv = 1; lv <= count; lv++) {
             final int level = lv;
@@ -51,8 +47,8 @@ public class VaultUpgradeMenu extends Menu {
             boolean done = lv <= vault.level();
             if (done) {
                 btn(base, DONE[lv - 1], e -> Msg.send(viewer, "&7Level " + level + " sudah terbuka."));
-                set(base + 5, Items.glow(Items.make(Material.CHEST, "&a" + slots + " slot",
-                        "&aTerbuka" + (lv == vault.level() ? " &7(level aktif)" : ""))));
+                label(lv * 9 + 5, 1, "&a" + slots + " SLOT");
+                label(lv * 9 + 5, 2, lv == vault.level() ? "&aAKTIF" : "&7TERBUKA");
             } else {
                 btn(base, OPEN[lv - 1], e -> new ConfirmMenu(plugin, viewer, this,
                         "&eUpgrade ke Level " + level + "?",
@@ -62,7 +58,8 @@ public class VaultUpgradeMenu extends Menu {
                     else Msg.send(viewer, "&aBrankas " + vault.teamName() + " di-upgrade ke Level " + level + ".");
                     new VaultUpgradeMenu(plugin, viewer, parent, vault).open();
                 }).open());
-                set(base + 5, Items.make(Material.ENDER_CHEST, "&e" + slots + " slot", "&7Klik tombol untuk upgrade"));
+                label(lv * 9 + 5, 1, "&e" + slots + " SLOT");
+                label(lv * 9 + 5, 2, "&7KLIK UPGRADE");
             }
         }
     }

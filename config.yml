@@ -84,8 +84,8 @@ ranks:
 # Brankas fraksi (dibuat otomatis saat team dibuat; diakses lewat menu /teamup)
 vault:
   enabled: true
-  # jumlah slot per level (maks 5 level, naik terus, maks 200). Upgrade manual oleh admin, tidak bisa downgrade.
-  slots-per-level: [20, 40, 60, 80, 100]
+  # jumlah slot per level (maks 5 level, naik terus, maks 500). Upgrade manual oleh admin, tidak bisa downgrade.
+  slots-per-level: [50, 100, 150, 200, 300]
   log:
     max-entries: 500          # riwayat yang disimpan per brankas (yang lama otomatis dibuang)
     archive-on-clear: true    # log yang di-clear dipindah ke plugins/TeamUP/vaults/archive

@@ -1,8 +1,6 @@
 package id.teamup.gui;
 
-import id.teamup.Items;
 import id.teamup.TeamUPPlugin;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 public class AdminMenu extends Menu {
@@ -27,8 +25,7 @@ public class AdminMenu extends Menu {
 
     @Override
     protected void build() {
-        set(4, Items.make(Material.BOOKSHELF, "&e" + plugin.teams().all().size() + " team",
-                "&7List Team: klik kiri buka sebagai ketua,", "&7klik kanan warn, shift+kanan hapus"));
+        label(0, 0, "&e" + plugin.teams().all().size() + " &7TEAM TERDAFTAR");
         btn(9, Btn.ADD_TEAM, e -> new CreateTeamPickMenu(plugin, viewer, this).open());
         btn(14, Btn.LIST_TEAM, e -> new TeamListMenu(plugin, viewer, this, false).open());
         btn(18, Btn.WARN_TEAM, e -> new TeamListMenu(plugin, viewer, this, true).open());

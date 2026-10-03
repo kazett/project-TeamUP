@@ -30,7 +30,7 @@ import org.bukkit.persistence.PersistentDataType;
  */
 public final class Vault {
     public static final int PER_PAGE = 45;
-    public static final int HARD_MAX = 200;
+    public static final int HARD_MAX = 500;
 
     private final VaultManager mgr;
     private final String key;

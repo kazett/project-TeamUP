@@ -1,7 +1,9 @@
 package id.teamup.gui;
 
 import id.teamup.TeamUPPlugin;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
 import java.util.function.Consumer;
@@ -21,6 +23,7 @@ public abstract class Menu implements InventoryHolder {
     private Inventory inv;
     private Inventory shown;
     private final Map<Integer, Btn> btns = new HashMap<>();
+    private final List<GuiFont.Label> labels = new ArrayList<>();
     private String sig = "";
     private final Map<Integer, Consumer<InventoryClickEvent>> actions = new HashMap<>();
 
@@ -47,19 +50,20 @@ public abstract class Menu implements InventoryHolder {
     }
 
     private Inventory create() {
-        Component t = GuiFont.styled(theme(), rows(), actions.keySet(), btns, titleText());
+        Component t = GuiFont.styled(theme(), rows(), actions.keySet(), btns, labels, titleText());
         return Bukkit.createInventory(this, rows() * 9, t);
     }
 
     private void rebuild() {
         actions.clear();
         btns.clear();
+        labels.clear();
         inv = Bukkit.createInventory(this, rows() * 9);
         build();
     }
 
     private String signature() {
-        return new TreeSet<>(actions.keySet()) + "|" + new java.util.TreeMap<>(btns) + "|" + titleText();
+        return new TreeSet<>(actions.keySet()) + "|" + new java.util.TreeMap<>(btns) + "|" + titleText() + "|" + labels;
     }
 
     public void open() {
@@ -101,6 +105,11 @@ public abstract class Menu implements InventoryHolder {
         if (slot % 9 + b.width() > 9) return;
         btns.put(slot, b);
         for (int i = 0; i < b.width(); i++) actions.put(slot + i, action);
+    }
+
+    /** Teks yang digambar di dalam menu (tanpa item Minecraft). line 0 = tengah, 1 = baris atas, 2 = baris bawah. */
+    protected void label(int slot, int line, String text) {
+        labels.add(new GuiFont.Label(slot, line, text));
     }
 
     protected void set(int slot, ItemStack item) {

@@ -1,8 +1,6 @@
 package id.teamup.gui;
 
-import id.teamup.Items;
 import id.teamup.TeamUPPlugin;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 public class ConfirmMenu extends Menu {
@@ -34,7 +32,9 @@ public class ConfirmMenu extends Menu {
 
     @Override
     protected void build() {
-        set(13, Items.make(Material.PAPER, "&e" + description));
+        // keterangan digambar sebagai teks (bukan item), dipecah per baris
+        java.util.List<String> lines = GuiFont.wrap(description, 148);
+        for (int i = 0; i < lines.size() && i < 3; i++) label(i * 9, 0, "&e" + lines.get(i));
         btn(27, Btn.YES, e -> onYes.run());
         btn(32, Btn.NO, e -> {
             if (parent != null) parent.open();
