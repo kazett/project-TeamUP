@@ -1,6 +1,7 @@
 package id.teamup.vault;
 
 import id.teamup.Items;
+import id.teamup.Msg;
 import id.teamup.gui.Btn;
 import id.teamup.gui.GuiFont;
 import id.teamup.gui.GuiTheme;
@@ -174,7 +175,7 @@ public final class Vault {
         for (Player p : Bukkit.getOnlinePlayers()) {
             if (p.getOpenInventory().getTopInventory().getHolder() instanceof VaultHolder h && h.vault() == this) {
                 p.closeInventory();
-                if (message != null) p.sendMessage(id.teamup.Msg.c(id.teamup.Msg.PREFIX + message));
+                if (message != null) p.sendMessage(Msg.c(Msg.PREFIX + message));
             }
         }
         pages.clear();
