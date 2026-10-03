@@ -27,7 +27,19 @@ public enum Btn {
     KICK(4),
     OK2(2),
     OK2_OFF(2),
-    COLOR(4);
+    COLOR(4),
+    BRANGKAS(4),
+    ADM_BRANGKAS(4),
+    HISTORY(4),
+    VIEW(4),
+    UPGRADE(4),
+    LOG(4),
+    CLEAR2(2),
+    VL1_DONE(4), VL1_OPEN(4),
+    VL2_DONE(4), VL2_OPEN(4),
+    VL3_DONE(4), VL3_OPEN(4),
+    VL4_DONE(4), VL4_OPEN(4),
+    VL5_DONE(4), VL5_OPEN(4);
 
     private final int width;
 

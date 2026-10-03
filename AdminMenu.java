@@ -32,6 +32,9 @@ public class AdminMenu extends Menu {
         btn(9, Btn.ADD_TEAM, e -> new CreateTeamPickMenu(plugin, viewer, this).open());
         btn(14, Btn.LIST_TEAM, e -> new TeamListMenu(plugin, viewer, this, false).open());
         btn(18, Btn.WARN_TEAM, e -> new TeamListMenu(plugin, viewer, this, true).open());
+        if (plugin.vaults().enabled()) {
+            btn(27, Btn.ADM_BRANGKAS, e -> new VaultListMenu(plugin, viewer, this).open());
+        }
         btn(23, Btn.CLOSE4, e -> viewer.closeInventory());
     }
 }

@@ -149,7 +149,8 @@ public class TeamManager {
     private static boolean defaultPerm(Rank r, TeamPerm perm) {
         return switch (r) {
             case LEADER -> true;
-            case DEPUTY -> perm == TeamPerm.OPEN_MENU || perm == TeamPerm.VIEW_ONLINE || perm == TeamPerm.CHAT;
+            case DEPUTY -> perm == TeamPerm.OPEN_MENU || perm == TeamPerm.VIEW_ONLINE || perm == TeamPerm.CHAT
+                    || perm == TeamPerm.VAULT;
             case MEMBER -> perm == TeamPerm.CHAT;
             default -> false;
         };
@@ -185,6 +186,7 @@ public class TeamManager {
         byPlayer.put(leader, t);
         save();
         plugin.tags().refresh(t);
+        if (plugin.vaults() != null && plugin.vaults().enabled()) plugin.vaults().ensure(t); // brankas otomatis
         return null;
     }
 
@@ -248,6 +250,7 @@ public class TeamManager {
 
     public void disband(Team t, boolean forced) {
         if (forced) dissolved.add(new Dissolved(t.getName(), new HashSet<>(t.getMembers().keySet())));
+        if (plugin.vaults() != null) plugin.vaults().archive(t); // isi + log brankas diarsipkan, tidak hilang
         List<String> names = new ArrayList<>();
         for (UUID id : t.getMembers().keySet()) {
             names.add(t.nameOf(id));

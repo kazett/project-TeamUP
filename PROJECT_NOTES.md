@@ -227,3 +227,13 @@ Kalau mau referensi tampilan, kirim screenshot GUI plugin lain yang disukai (ata
 
 - Versi plugin 1.2.0, pack diganti nama `TeamUP-GUI-pack-v3.zip` (deskripsi "v3") supaya jar/pack lama tidak tertukar. HUD v3 butuh jar 1.2.0 + pack v3 (font hud_<offset>.json); pack lama + jar baru = kotak-kotak di atas layar.
 - `/tua hud check`: kirim baris chat yang memakai font pack (plat + ikon). Kotak-kotak = pack belum terpasang / lama.
+
+## Update 3 Okt: Brankas fraksi (v1.3.0, pack v4)
+
+- Paket `id.teamup.vault`: `Vault`, `VaultManager`, `VaultListener`, `VaultHolder`, `LogEntry`. Menu: `VaultListMenu`, `VaultAdminMenu`, `VaultViewMenu`, `VaultLogMenu`, `VaultUpgradeMenu`, `VaultBackMenu`.
+- Brankas dibuat otomatis saat team dibuat (level 1 = 20 slot). Level 1-5 = 20/40/60/80/100 (`vault.slots-per-level`). Upgrade manual oleh admin (menu admin > BRANGKAS > team > UPGRADE), tidak bisa downgrade.
+- Akses anggota: permission `ranks.<RANK>.vault` (default hanya LEADER + DEPUTY). Tombol BRANGKAS di TeamMenu (slot 32; mode admin: slot 50 membuka menu admin brankas).
+- Anti-dupe: tiap halaman adalah SATU Inventory bersama (semua pemain melihat inventory yang sama). Klik diperiksa di VaultListener: slot terkunci/tombol dibatalkan, shift-click dari inventory pemain dimasukkan manual hanya ke slot isi, double-click-gather dan klik creative dibatalkan, izin dicek ulang tiap klik.
+- Log: perubahan dibandingkan dengan isi sebelumnya (`Vault.flush`) dan dicatat atas nama pemain (aksi P/T/S). Pindah slot tidak dicatat. Tersimpan di `plugins/TeamUP/vaults/<id>.log` (append, tulis async), memori + file dibatasi `vault.log.max-entries` (500). Clear log: Ketua/Wakil/admin, log lama diarsipkan (maks 10 arsip) + dicatat siapa yang clear.
+- Simpan: `vaults/<id>.yml` (tulis atomik, async, debounce 1 detik, wajib selesai saat shutdown). Team dibubarkan -> isi + log diarsipkan ke `vaults/archive/`, tidak dihapus.
+- Pack v4: 17 tombol baru (BRANGKAS, HISTORY, VIEW, UPGRADE, LOG, CLEAR, LEVEL 1-5 centang/terbuka). Urutan enum `Btn` harus sama dengan urutan di gui.json (sudah dicek otomatis).

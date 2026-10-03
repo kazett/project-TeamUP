@@ -50,28 +50,42 @@ ranks:
     openmenu: true
     managemembers: true
     viewonline: true
+    vault: true
     chat: true
   DEPUTY:
     name: "WAKIL KETUA"
     openmenu: true
     managemembers: false
     viewonline: true
+    vault: true
     chat: true
   MEMBER:
     name: "MEMBER"
     openmenu: false
     managemembers: false
     viewonline: false
+    vault: false
     chat: true
   SOLDIER:
     name: "SOLDIER"
     openmenu: false
     managemembers: false
     viewonline: false
+    vault: false
     chat: false
   HANGEROUND:
     name: "HANGEROUND"
     openmenu: false
     managemembers: false
     viewonline: false
+    vault: false
     chat: false
+
+# Brankas fraksi (dibuat otomatis saat team dibuat; diakses lewat menu /teamup)
+vault:
+  enabled: true
+  # jumlah slot per level (maks 5 level, naik terus, maks 200). Upgrade manual oleh admin, tidak bisa downgrade.
+  slots-per-level: [20, 40, 60, 80, 100]
+  log:
+    max-entries: 500          # riwayat yang disimpan per brankas (yang lama otomatis dibuang)
+    archive-on-clear: true    # log yang di-clear dipindah ke plugins/TeamUP/vaults/archive

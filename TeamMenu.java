@@ -5,6 +5,7 @@ import id.teamup.Msg;
 import id.teamup.TeamUPPlugin;
 import id.teamup.model.Team;
 import id.teamup.model.TeamPerm;
+import id.teamup.vault.Vault;
 import java.util.List;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -65,6 +66,18 @@ public class TeamMenu extends Menu {
 
         if (admin || team.getLeader().equals(viewer.getUniqueId())) {
             btn(admin ? 41 : 27, Btn.COLOR, e -> new ColorMenu(plugin, viewer, this, team, admin).open());
+        }
+
+        // brankas fraksi: hanya yang punya izin (default Ketua + Wakil Ketua); admin melihat lewat menu admin
+        if (plugin.vaults().enabled() && can(TeamPerm.VAULT)) {
+            if (admin) {
+                btn(50, Btn.BRANGKAS, e -> {
+                    Vault v = plugin.vaults().ensure(team);
+                    new VaultAdminMenu(plugin, viewer, this, v).open();
+                });
+            } else {
+                btn(32, Btn.BRANGKAS, e -> plugin.vaults().open(viewer, team, 0));
+            }
         }
 
         if (admin) {

@@ -10,6 +10,8 @@ import id.teamup.manager.HudManager;
 import id.teamup.manager.InviteManager;
 import id.teamup.manager.NametagManager;
 import id.teamup.manager.TeamManager;
+import id.teamup.vault.VaultListener;
+import id.teamup.vault.VaultManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;
@@ -23,6 +25,7 @@ public class TeamUPPlugin extends JavaPlugin {
     private ChatPrompt prompts;
     private NametagManager tags;
     private HudManager hud;
+    private VaultManager vaults;
 
     @Override
     public void onEnable() {
@@ -32,11 +35,15 @@ public class TeamUPPlugin extends JavaPlugin {
         invites = new InviteManager(this);
         prompts = new ChatPrompt(this);
         teams.load();
+        vaults = new VaultManager(this);
+        vaults.loadAll();
+        vaults.ensureAll();
         hud = new HudManager(this);
         tags.refreshAll();
 
         getServer().getPluginManager().registerEvents(new MenuListener(), this);
         getServer().getPluginManager().registerEvents(new GameListener(this), this);
+        getServer().getPluginManager().registerEvents(new VaultListener(this), this);
 
         TeamUPCommand main = new TeamUPCommand(this);
         getCommand("teamup").setExecutor(main);
@@ -95,6 +102,7 @@ public class TeamUPPlugin extends JavaPlugin {
     public void reloadAll() {
         reloadConfig();
         if (hud != null) hud.reload();
+        if (vaults != null) vaults.onReload();
         if (tags != null) tags.refreshAll();
     }
 
@@ -109,6 +117,7 @@ public class TeamUPPlugin extends JavaPlugin {
     @Override
     public void onDisable() {
         if (hud != null) hud.stop();
+        if (vaults != null) vaults.shutdown();
         if (teams != null) teams.save();
     }
 
@@ -117,4 +126,5 @@ public class TeamUPPlugin extends JavaPlugin {
     public ChatPrompt prompts() { return prompts; }
     public NametagManager tags() { return tags; }
     public HudManager hud() { return hud; }
+    public VaultManager vaults() { return vaults; }
 }

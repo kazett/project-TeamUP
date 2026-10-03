@@ -5,7 +5,8 @@ public enum TeamPerm {
     MANAGE_MEMBERS("managemembers"),
     VIEW_ONLINE("viewonline"),
     CHAT("chat"),
-    RANK("rank");
+    RANK("rank"),
+    VAULT("vault");
 
     private final String key;
 
